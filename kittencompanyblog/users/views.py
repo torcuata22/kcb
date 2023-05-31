@@ -38,7 +38,7 @@ def login():
             if next == None or not next[0] == '/':
                 next = url_for('core.index')
 
-            return redirect('next')
+            return redirect(next)
     return render_template('login.html', form = form)
 
 #logout view

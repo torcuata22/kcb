@@ -1,15 +1,15 @@
 from datetime import datetime
 from kittencompanyblog import db, login_manager #imports from __init__.py
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixIn
+from flask_login import UserMixin
 
 #this is the function that allows me to use "if user.is_authenticated" in the templates
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(user_id)
 
-
-class User(db.Model):
+#By inheriting from the UserMixin class, User model automatically has is_active, is_authenticated, is_anonymous, and get_id methods implemented with default behavior.
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key = True)
     profile_image = db.Column(db.String(64), nullable = False, default = 'default_profile.png')
@@ -45,4 +45,6 @@ class BlogPost(db.Model):
 
     def __repr__(self):
         return f"Post ID: {self.id} -- Date: {self.date} --Title: {self.title}"
+
+
 

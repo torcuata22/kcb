@@ -2,14 +2,14 @@
 {% block content %}
 
 <div class="jumbotron">
-    <div align="'center">
-        <h1>Welcome to {{curent_user.username}}'s page</h1>
-        <img align=center src="{{url_for('static', filename = 'profile_pics/'+current_user.profile_image)}}" alt="">
+    <div align="center">
+        <h1>Welcome to {{current_user.username}}'s page</h1>
+        <img align="center" src="{{url_for('static', filename = 'profile_pics/'+current_user.profile_image)}}" alt="">
 
     </div>
 </div>
  <div class="container">
-    <form method="POST">
+<form method="POST" action="" enctype="multipart/form-data">
 
 {{form.hidden_tag()}}
 <div class="form-group">
